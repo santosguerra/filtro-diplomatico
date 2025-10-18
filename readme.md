@@ -10,34 +10,9 @@ Extensión que intercepta tus mensajes en WhatsApp Web y sugiere versiones más 
 
 ## 🚀 Instalación
 
-### Paso 1: Preparar los archivos
+### Paso 1: Extrae el código en una carpeta llamada `filtro-diplomatico` en tu computadora
 
-1. Crea una carpeta llamada `filtro-diplomatico` en tu computadora
-2. Dentro de esa carpeta, crea la siguiente estructura:
-
-```
-filtro-diplomatico/
-├── manifest.json
-├── background.js
-├── content.js
-├── popup.html
-├── popup.js
-├── options.html
-├── options.js
-├── styles.css
-└── icons/
-    ├── icon16.png
-    ├── icon48.png
-    └── icon128.png
-```
-
-3. Copia el código de cada archivo desde los artifacts anteriores
-
-### Paso 2: Crear iconos temporales
-
-Mientras no tengas iconos personalizados, puedes crear imágenes simples de 16x16, 48x48 y 128x128 píxeles con cualquier editor de imágenes (puedes usar un emoji 🤖 sobre fondo morado).
-
-### Paso 3: Cargar la extensión en el navegador
+### Paso 2: Cargar la extensión en el navegador
 
 #### En Chrome:
 1. Abre Chrome y ve a `chrome://extensions/`
@@ -80,7 +55,7 @@ Mientras no tengas iconos personalizados, puedes crear imágenes simples de 16x1
 ### Niveles de diplomacia:
 - **Suave**: Ajustes mínimos, mantiene tu estilo
 - **Moderado**: Profesional y neutro (recomendado)
-- **Ultra**: Extremadamente cortés y ceremonioso
+- **Ultra**: Extremadamente cortés y ceremonioso.
 
 ### Lista blanca:
 Agrega contactos o grupos donde NO quieres que se active el filtro:
@@ -151,7 +126,6 @@ Si quieres mejorar la extensión:
 ## 📄 Licencia
 
 Uso libre para propósitos personales. 
-Creado por Santos R. Guerra F.
 
 ---
 
