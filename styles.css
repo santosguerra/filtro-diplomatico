@@ -1,0 +1,282 @@
+/* styles.css - Estilos para el modal en WhatsApp Web */
+
+/* Modal overlay */
+.diplomatic-filter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  animation: df-fadeIn 0.3s ease;
+}
+
+/* Modal content */
+.df-modal-content {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  animation: df-slideUp 0.3s ease;
+}
+
+/* Modal header */
+.df-modal-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.df-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.df-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.df-close:hover {
+  opacity: 1;
+}
+
+/* Modal body */
+.df-modal-body {
+  padding: 25px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.df-original,
+.df-suggested {
+  margin-bottom: 20px;
+}
+
+.df-original label,
+.df-suggested label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.df-message-text {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  min-height: 50px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.df-suggested .df-message-text {
+  background: #e8f5e9;
+  border: 2px solid #4caf50;
+}
+
+.df-loading {
+  color: #999;
+  font-style: italic;
+  position: relative;
+  padding-left: 25px;
+}
+
+.df-loading::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #667eea;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: df-spin 1s linear infinite;
+}
+
+/* Modal footer */
+.df-modal-footer {
+  padding: 20px;
+  background: #f8f9fa;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.df-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 120px;
+}
+
+.df-btn-original {
+  background: #6c757d;
+  color: white;
+}
+
+.df-btn-original:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.df-btn-suggested {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.df-btn-suggested:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.df-btn-suggested:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.df-btn-cancel {
+  background: white;
+  color: #666;
+  border: 2px solid #e0e0e0;
+}
+
+.df-btn-cancel:hover {
+  background: #f8f9fa;
+  border-color: #999;
+}
+
+/* Animations */
+@keyframes df-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes df-slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes df-spin {
+  from {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Scrollbar personalizada para el modal */
+.df-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.df-modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.df-modal-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.df-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .df-modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .df-modal-footer {
+    flex-direction: column;
+  }
+  
+  .df-btn {
+    width: 100%;
+  }
+}
+
+/* Estado de éxito para mensaje ya diplomático */
+.df-already-diplomatic {
+  color: #4caf50;
+  font-size: 12px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.df-already-diplomatic::before {
+  content: '✓';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: #4caf50;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  font-weight: bold;
+}
+
+/* Marcador invisible para detectar si los interceptores están listos */
+.df-interceptors-ready {
+  display: none !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+}

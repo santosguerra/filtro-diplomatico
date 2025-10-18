@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Configuración - Filtro Diplomático</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    
+    .header p {
+      opacity: 0.9;
+      font-size: 14px;
+    }
+    
+    .content {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    
+    .form-group small {
+      display: block;
+      margin-top: 5px;
+      color: #999;
+      font-size: 12px;
+    }
+    
+    .api-key-group {
+      position: relative;
+    }
+    
+    .api-key-group input {
+      padding-right: 100px;
+    }
+    
+    .toggle-visibility {
+      position: absolute;
+      right: 10px;
+      top: 35px;
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .toggle-visibility:hover {
+      background: #5a67d8;
+    }
+    
+    .whitelist-container {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    
+    .whitelist-input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .whitelist-input-group input {
+      flex: 1;
+    }
+    
+    .btn-add {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .btn-add:hover {
+      background: #5a67d8;
+    }
+    
+    .whitelist-items {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .whitelist-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background: white;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .whitelist-item span {
+      color: #333;
+    }
+    
+    .btn-remove {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .btn-remove:hover {
+      background: #c82333;
+    }
+    
+    .custom-prompt {
+      margin-bottom: 20px;
+    }
+    
+    .prompt-templates {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .template-btn {
+      padding: 10px;
+      background: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+    }
+    
+    .template-btn:hover {
+      border-color: #667eea;
+      background: #f0f4ff;
+    }
+    
+    .template-btn strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .template-btn small {
+      color: #666;
+      font-size: 11px;
+    }
+    
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .save-section {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 2px solid #f0f0f0;
+    }
+    
+    .btn-save {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.3s;
+    }
+    
+    .btn-save:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .success-message {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .success-message.show {
+      display: block;
+    }
+    
+    .info-box {
+      background: #e7f3ff;
+      border-left: 4px solid #667eea;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+    
+    .info-box h4 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .info-box p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .info-box a {
+      color: #667eea;
+      text-decoration: none;
+    }
+    
+    .info-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🤖 Configuración del Filtro Diplomático</h1>
+      <p>Personaliza cómo la IA reformula tus mensajes</p>
+    </div>
+    
+    <div class="content">
+      <div class="success-message" id="successMessage">
+        ✅ Configuración guardada exitosamente
+      </div>
+      
+      <!-- API Key Section -->
+      <div class="section">
+        <h2 class="section-title">🔑 API de OpenAI</h2>
+        
+        <div class="info-box">
+          <h4>¿Cómo obtener tu API Key?</h4>
+          <p>
+            1. Ve a <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a><br>
+            2. Crea una cuenta o inicia sesión<br>
+            3. Genera una nueva API Key<br>
+            4. Copia y pégala aquí
+          </p>
+        </div>
+        
+        <div class="form-group api-key-group">
+          <label for="apiKey">API Key de OpenAI</label>
+          <input type="password" id="apiKey" placeholder="sk-...">
+          <button class="toggle-visibility" id="toggleApiKey">Mostrar</button>
+          <small>Tu API key se almacena de forma segura y solo se usa para reformular mensajes</small>
+        </div>
+      </div>
+      
+      <!-- Lista Blanca Section -->
+      <div class="section">
+        <h2 class="section-title">📋 Lista Blanca</h2>
+        <p style="margin-bottom: 15px; color: #666;">
+          Contactos o grupos donde NO quieres que se active el filtro diplomático
+        </p>
+        
+        <div class="whitelist-container">
+          <div class="whitelist-input-group">
+            <input type="text" id="whitelistInput" placeholder="Nombre del contacto o grupo">
+            <button class="btn-add" id="btnAddWhitelist">Agregar</button>
+          </div>
+          
+          <div class="whitelist-items" id="whitelistItems">
+            <!-- Items se agregan dinámicamente -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Prompts Personalizados Section -->
+      <div class="section">
+        <h2 class="section-title">✏️ Prompts Personalizados</h2>
+        <p style="margin-bottom: 15px; color: #666;">
+          Personaliza cómo quieres que la IA reformule tus mensajes
+        </p>
+        
+        <div class="prompt-templates">
+          <button class="template-btn" data-template="professional">
+            <strong>Profesional</strong>
+            <small>Para entornos corporativos</small>
+          </button>
+          <button class="template-btn" data-template="friendly">
+            <strong>Amigable</strong>
+            <small>Mantiene cercanía sin conflicto</small>
+          </button>
+          <button class="template-btn" data-template="formal">
+            <strong>Formal</strong>
+            <small>Muy cortés y distante</small>
+          </button>
+          <button class="template-btn" data-template="empathetic">
+            <strong>Empático</strong>
+            <small>Muestra comprensión</small>
+          </button>
+        </div>
+        
+        <div class="form-group">
+          <label for="customPromptSoft">Prompt Nivel Suave</label>
+          <textarea id="customPromptSoft" placeholder="Define cómo reformular en nivel suave..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="customPromptModerate">Prompt Nivel Moderado</label>
+          <textarea id="customPromptModerate" placeholder="Define cómo reformular en nivel moderado..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="customPromptUltra">Prompt Nivel Ultra</label>
+          <textarea id="customPromptUltra" placeholder="Define cómo reformular en nivel ultra diplomático..."></textarea>
+        </div>
+      </div>
+      
+      <!-- Guardar -->
+      <div class="save-section">
+        <button class="btn-save" id="btnSave">💾 Guardar Configuración</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>
