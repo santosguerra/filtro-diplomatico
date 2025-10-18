@@ -1,6 +1,4 @@
-<!-- popup.js -->
-<script>
-// popup.js
+// popup.js - Script separado para el popup
 document.addEventListener('DOMContentLoaded', () => {
   const toggleEnabled = document.getElementById('toggleEnabled');
   const apiWarning = document.getElementById('apiWarning');
@@ -60,15 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Botón de opciones
+  // Botón de opciones - CORREGIDO
   btnOptions.addEventListener('click', () => {
+    console.log('Abriendo opciones...');
     chrome.runtime.openOptionsPage();
   });
   
-  // Botón de lista blanca (próximamente)
+  // Botón de lista blanca - CORREGIDO
   btnWhitelist.addEventListener('click', () => {
+    console.log('Abriendo lista blanca (opciones)...');
     chrome.runtime.openOptionsPage();
-    // En el futuro, podríamos abrir una pestaña específica
   });
 });
-</script>
+
